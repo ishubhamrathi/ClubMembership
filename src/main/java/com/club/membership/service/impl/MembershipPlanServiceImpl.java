@@ -7,8 +7,13 @@ import com.club.membership.exception.ResourceNotFoundException;
 import com.club.membership.mapper.MembershipPlanResponseMapper;
 import com.club.membership.service.MembershipPlanService;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class MembershipPlanServiceImpl implements MembershipPlanService {
 
     private final MembershipPlanDao membershipPlanDao;

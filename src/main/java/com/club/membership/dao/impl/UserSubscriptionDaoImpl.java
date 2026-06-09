@@ -7,10 +7,14 @@ import com.club.membership.domain.model.UserSubscription;
 import com.club.membership.exception.DatabaseException;
 import com.club.membership.jooq.generated.Tables;
 import com.club.membership.mapper.UserSubscriptionMapper;
+import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
+@RequiredArgsConstructor
 public class UserSubscriptionDaoImpl implements UserSubscriptionDao {
 
     private final DSLContext dslContext;

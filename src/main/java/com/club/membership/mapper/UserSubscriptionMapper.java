@@ -11,15 +11,15 @@ public class UserSubscriptionMapper {
     public UserSubscription toDomain(
             UserSubscriptionRecord record
     ) {
-        return new UserSubscription(
-                record.getId(),
-                record.getUserId(),
-                record.getMembershipPlanId(),
-                TierType.valueOf(record.getTierType()),
-                SubscriptionStatus.valueOf(record.getStatus()),
-                record.getSubscribedAt(),
-                record.getExpiresAt(),
-                record.getVersion()
-        );
+        return UserSubscription.builder()
+                .id(record.getId())
+                .userId(record.getUserId())
+                .membershipPlanId(record.getMembershipPlanId())
+                .tierType(TierType.valueOf(record.getTierType()))
+                .status(SubscriptionStatus.valueOf(record.getStatus()))
+                .subscribedAt(record.getSubscribedAt())
+                .expiresAt(record.getExpiresAt())
+                .version(record.getVersion())
+                .build();
     }
 }

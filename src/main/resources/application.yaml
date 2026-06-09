@@ -4,6 +4,16 @@ spring:
 
   datasource:
     url: jdbc:h2:mem:membershipdb
+  sql:
+    init:
+      mode: always
+
+  jpa:
+    defer-datasource-initialization: true
+
+  h2:
+    console:
+      enabled: true
 
 springdoc:
   swagger-ui:
