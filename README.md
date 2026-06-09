@@ -37,7 +37,7 @@ A Spring Boot application implementing a configurable membership program with ti
 
 ## Tech Stack
 
-* Java 25
+* Java 21
 * Spring Boot
 * jOOQ
 * H2 Database
