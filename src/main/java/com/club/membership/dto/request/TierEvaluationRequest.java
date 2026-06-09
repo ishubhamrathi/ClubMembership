@@ -11,6 +11,7 @@ public record TierEvaluationRequest(
         Integer orderCount,
 
         @NotNull
+        @Min(0)
         BigDecimal totalOrderValue,
 
         String cohort

@@ -53,7 +53,11 @@ public class TierEvaluationServiceImpl implements TierEvaluationService {
                                             s.supports(
                                                     rule.ruleType()))
                                     .findFirst()
-                                    .orElseThrow()
+                                    .orElseThrow(() ->
+                                            new IllegalStateException(
+                                                    "No strategy found for rule type: "
+                                                            + rule.ruleType()
+                                            ))
                                     .isEligible(rule, request));
 
             if (eligible) {

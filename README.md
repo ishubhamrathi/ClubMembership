@@ -60,14 +60,13 @@ com.club.membership
 ├── strategy
 ├── domain
 │     ├── model
-│     ├── enums
-│     └── event
+│     └── enums
 ├── dto
 │     ├── request
 │     └── response
 ├── exception
 ├── config
-└── util
+└── utils
 ```
 
 ---
@@ -215,7 +214,7 @@ Use:
 
 ```text
 JDBC URL:
-jdbc:h2:mem:testdb
+jdbc:h2:mem:membershipdb
 
 Username:
 sa
@@ -309,4 +308,6 @@ Example:
 DELETE /api/v1/subscriptions
 ```
 
-
+## API Specs
+http://localhost:8080/swagger-ui
+http://localhost:8080/api-docs
