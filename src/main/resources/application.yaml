@@ -1,3 +1,12 @@
 spring:
   application:
     name: membership
+
+  datasource:
+    url: jdbc:h2:mem:membershipdb
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+  api-docs:
+    path: /api-docs

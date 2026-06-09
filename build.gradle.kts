@@ -1,7 +1,10 @@
+import org.jooq.meta.jaxb.Property
+
 plugins {
 	java
 	id("org.springframework.boot") version "4.0.6"
 	id("io.spring.dependency-management") version "1.1.7"
+    id("nu.studer.jooq") version "9.0"
 }
 
 group = "com.club"
@@ -23,7 +26,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.2")
-	compileOnly("org.projectlombok:lombok")
+    implementation("org.springframework.boot:spring-boot-starter-jooq")
+    compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.h2database:h2")
 	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.projectlombok:lombok")
@@ -33,8 +37,43 @@ dependencies {
 	testCompileOnly("org.projectlombok:lombok")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	testAnnotationProcessor("org.projectlombok:lombok")
+
+    jooqGenerator("org.jooq:jooq-meta:3.19.18")
+    jooqGenerator("org.jooq:jooq-codegen:3.19.18")
+    jooqGenerator("org.jooq:jooq-meta-extensions:3.19.18")
 }
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+jooq {
+    version.set("3.19.18")
+    configurations {
+        create("main") {
+            generateSchemaSourceOnCompilation.set(true)
+            jooqConfiguration.apply {
+                generator.apply {
+                    database.apply {
+                        name = "org.jooq.meta.extensions.ddl.DDLDatabase"
+                        properties.add(
+                            Property().apply {
+                                key = "scripts"
+                                value = "src/main/resources/schema.sql"
+                            }
+                        )
+                        properties.add(
+                            Property().apply {
+                                key = "sort"
+                                value = "semantic"
+                            }
+                        )
+                    }
+                    target.apply {
+                        packageName = "com.club.membership.jooq.generated"
+                    }
+                }
+            }
+        }
+    }
 }

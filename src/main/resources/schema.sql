@@ -1,0 +1,56 @@
+CREATE TABLE IF NOT EXISTS membership_plan (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    name VARCHAR(100) NOT NULL,
+    billing_cycle VARCHAR(20) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT uk_plan_name UNIQUE (name)
+);
+
+CREATE TABLE IF NOT EXISTS user_subscription (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    user_id UUID NOT NULL,
+    membership_plan_id BIGINT NOT NULL,
+
+    tier_type VARCHAR(20) NOT NULL,
+    status VARCHAR(20) NOT NULL,
+
+    subscribed_at TIMESTAMP NOT NULL,
+    expires_at TIMESTAMP NOT NULL,
+
+    version BIGINT NOT NULL DEFAULT 0,
+
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS tier_rule (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    tier_type VARCHAR(20) NOT NULL,
+    rule_type VARCHAR(50) NOT NULL,
+    threshold_value VARCHAR(100) NOT NULL,
+
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT uk_tier_rule UNIQUE (tier_type, rule_type)
+);
+
+CREATE TABLE IF NOT EXISTS tier_benefit (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    tier_type VARCHAR(20) NOT NULL,
+    benefit_type VARCHAR(50) NOT NULL,
+    configuration CLOB NOT NULL,
+
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT uk_tier_benefit UNIQUE (tier_type, benefit_type)
+);

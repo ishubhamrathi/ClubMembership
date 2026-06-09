@@ -1,0 +1,19 @@
+package com.club.membership.mapper;
+
+import com.club.membership.domain.enums.BenefitType;
+import com.club.membership.domain.enums.TierType;
+import com.club.membership.domain.model.TierBenefit;
+import com.club.membership.jooq.generated.tables.records.TierBenefitRecord;
+import org.springframework.stereotype.Component;
+
+@Component
+public class TierBenefitMapper {
+    public TierBenefit toDomain(TierBenefitRecord record) {
+        return new TierBenefit(
+                record.getId(),
+                TierType.valueOf(record.getTierType()),
+                BenefitType.valueOf(record.getBenefitType()),
+                record.getConfiguration()
+        );
+    }
+}
