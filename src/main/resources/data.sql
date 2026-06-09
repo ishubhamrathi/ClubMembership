@@ -1,5 +1,6 @@
 DELETE FROM tier_benefit;
 DELETE FROM tier_rule;
+DELETE FROM user_subscription;
 DELETE FROM membership_plan;
 
 -- Membership Plans
@@ -92,6 +93,11 @@ VALUES
     'GOLD',
     'EARLY_ACCESS',
     '{"enabled":true}'
+),
+(
+    'GOLD',
+    'EXCLUSIVE_COUPON',
+    '{"couponCode":"GOLD10","discountPercent":10,"maxUses":3}'
 );
 
 -- PLATINUM Benefits
@@ -120,4 +126,9 @@ VALUES
     'PLATINUM',
     'PRIORITY_SUPPORT',
     '{"enabled":true}'
+),
+(
+    'PLATINUM',
+    'EXCLUSIVE_COUPON',
+    '{"couponCode":"PLAT20","discountPercent":20,"maxUses":5}'
 );
