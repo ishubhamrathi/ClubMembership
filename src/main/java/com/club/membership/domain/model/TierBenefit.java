@@ -5,7 +5,7 @@ import com.club.membership.domain.enums.TierType;
 import lombok.Builder;
 
 @Builder
-public record TierBenefit(
+public record TierBenefit (
         Long id,
         TierType tierType,
         BenefitType benefitType,

@@ -7,13 +7,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MembershipPlanMapper {
-    public MembershipPlan toDomain(MembershipPlanRecord record) {
+    public MembershipPlan toDomain(MembershipPlanRecord membershipPlanRecord) {
         return new MembershipPlan(
-                record.getId(),
-                record.getName(),
-                BillingCycle.valueOf(record.getBillingCycle()),
-                record.getPrice()
+                membershipPlanRecord.getId(),
+                membershipPlanRecord.getName(),
+                BillingCycle.valueOf(membershipPlanRecord.getBillingCycle()),
+                membershipPlanRecord.getPrice()
         );
-
     }
 }

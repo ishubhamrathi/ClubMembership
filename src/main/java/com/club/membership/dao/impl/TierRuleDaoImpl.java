@@ -15,9 +15,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-
-@RequiredArgsConstructor
 @Repository
+@RequiredArgsConstructor
 public class TierRuleDaoImpl implements TierRuleDao {
 
     private final DSLContext dslContext;
@@ -27,6 +26,15 @@ public class TierRuleDaoImpl implements TierRuleDao {
     public List<TierRule> getByTier(TierType tierType, UserContext userContext) {
         return dslContext.selectFrom(Tables.TIER_RULE)
                 .where(Tables.TIER_RULE.TIER_TYPE.eq(tierType.name()))
+                .fetch()
+                .stream()
+                .map(mapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<TierRule> getAllRules() {
+        return dslContext.selectFrom(Tables.TIER_RULE)
                 .fetch()
                 .stream()
                 .map(mapper::toDomain)
@@ -51,6 +59,6 @@ public class TierRuleDaoImpl implements TierRuleDao {
                 .returning()
                 .fetchOptional()
                 .map(mapper::toDomain)
-                .orElseThrow(() -> new DatabaseException("Failed to create tier rule!"));
+                .orElseThrow(() -> new DatabaseException("Failed to create tier rule"));
     }
 }

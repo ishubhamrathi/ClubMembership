@@ -9,5 +9,4 @@ import java.util.List;
 public interface BenefitsService {
 
     List<BenefitResponse> getBenefits(TierType tierType, UserContext userContext);
-
 }

@@ -6,7 +6,6 @@ import com.club.membership.dto.response.MembershipPlanResponse;
 import com.club.membership.exception.ResourceNotFoundException;
 import com.club.membership.mapper.MembershipPlanResponseMapper;
 import com.club.membership.service.MembershipPlanService;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +43,4 @@ public class MembershipPlanServiceImpl implements MembershipPlanService {
                         )
                 );
     }
-
 }

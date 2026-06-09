@@ -10,5 +10,4 @@ public record MembershipPlanResponse (
         BillingCycle billingCycle,
         BigDecimal price
 ) {
-
 }

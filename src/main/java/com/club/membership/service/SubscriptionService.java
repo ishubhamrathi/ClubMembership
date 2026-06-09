@@ -18,5 +18,4 @@ public interface SubscriptionService {
     List<SubscriptionResponse> getAllSubscriptions(UserContext userContext);
 
     void cancel(UserContext userContext);
-
 }

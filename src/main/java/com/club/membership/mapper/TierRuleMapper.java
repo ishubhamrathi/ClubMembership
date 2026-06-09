@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TierRuleMapper {
-    public TierRule toDomain(TierRuleRecord record) {
+    public TierRule toDomain(TierRuleRecord tierRuleRecord) {
         return new TierRule(
-                record.getId(),
-                TierType.valueOf(record.getTierType()),
-                RuleType.valueOf(record.getRuleType()),
-                record.getThresholdValue()
+                tierRuleRecord.getId(),
+                TierType.valueOf(tierRuleRecord.getTierType()),
+                RuleType.valueOf(tierRuleRecord.getRuleType()),
+                tierRuleRecord.getThresholdValue()
         );
     }
 }

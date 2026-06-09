@@ -15,8 +15,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-@RequiredArgsConstructor
 @Repository
+@RequiredArgsConstructor
 public class TierBenefitDaoImpl implements TierBenefitDao {
 
     private final DSLContext dslContext;

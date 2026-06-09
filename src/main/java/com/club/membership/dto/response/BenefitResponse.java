@@ -8,5 +8,4 @@ public record BenefitResponse (
         BenefitType benefitType,
         Map<String, Object> configuration
 ) {
-
 }

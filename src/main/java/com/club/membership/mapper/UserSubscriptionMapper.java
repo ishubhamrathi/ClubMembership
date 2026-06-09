@@ -9,17 +9,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserSubscriptionMapper {
     public UserSubscription toDomain(
-            UserSubscriptionRecord record
+            UserSubscriptionRecord userSubscriptionRecord
     ) {
         return UserSubscription.builder()
-                .id(record.getId())
-                .userId(record.getUserId())
-                .membershipPlanId(record.getMembershipPlanId())
-                .tierType(TierType.valueOf(record.getTierType()))
-                .status(SubscriptionStatus.valueOf(record.getStatus()))
-                .subscribedAt(record.getSubscribedAt())
-                .expiresAt(record.getExpiresAt())
-                .version(record.getVersion())
+                .id(userSubscriptionRecord.getId())
+                .userId(userSubscriptionRecord.getUserId())
+                .membershipPlanId(userSubscriptionRecord.getMembershipPlanId())
+                .tierType(TierType.valueOf(userSubscriptionRecord.getTierType()))
+                .status(SubscriptionStatus.valueOf(userSubscriptionRecord.getStatus()))
+                .subscribedAt(userSubscriptionRecord.getSubscribedAt())
+                .expiresAt(userSubscriptionRecord.getExpiresAt())
+                .version(userSubscriptionRecord.getVersion())
                 .build();
     }
 }

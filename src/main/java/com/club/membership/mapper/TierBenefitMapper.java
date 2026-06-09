@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TierBenefitMapper {
-    public TierBenefit toDomain(TierBenefitRecord record) {
+    public TierBenefit toDomain(TierBenefitRecord tierBenefitRecord) {
         return new TierBenefit(
-                record.getId(),
-                TierType.valueOf(record.getTierType()),
-                BenefitType.valueOf(record.getBenefitType()),
-                record.getConfiguration()
+                tierBenefitRecord.getId(),
+                TierType.valueOf(tierBenefitRecord.getTierType()),
+                BenefitType.valueOf(tierBenefitRecord.getBenefitType()),
+                tierBenefitRecord.getConfiguration()
         );
     }
 }
