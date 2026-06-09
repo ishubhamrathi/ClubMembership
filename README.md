@@ -198,11 +198,14 @@ Open:
 
 ```text
 http://localhost:8080/swagger-ui/index.html
+http://localhost:8080/swagger-ui
+http://localhost:8080/api-docs
+
 ```
 
 ---
 
-## H2 Console
+## Access H2 Database Console(Local Only)
 
 Open:
 
@@ -222,96 +225,3 @@ sa
 Password:
 (empty)
 ```
-
----
-
-## Required Header
-
-All APIs require:
-
-```text
-X-User-Id
-```
-
-Example:
-
-```text
-550e8400-e29b-41d4-a716-446655440000
-```
-
----
-
-# APIs
-
-## Membership Plans
-
-### Get all plans
-
-```http
-GET /api/v1/membership-plans
-```
-
-### Get plan by id
-
-```http
-GET /api/v1/membership-plans/{id}
-```
-
----
-
-## Subscription
-
-### Subscribe
-
-```http
-POST /api/v1/subscriptions
-```
-
-Example body:
-
-```json
-{
-  "membershipPlanId": 1,
-  "tierType": "SILVER"
-}
-```
-
----
-
-### Get current subscription
-
-```http
-GET /api/v1/subscriptions/current
-```
-
----
-
-### Change tier
-
-```http
-PATCH /api/v1/subscriptions/tier
-```
-
-Example:
-
-```json
-{
-  "tierType": "GOLD"
-}
-```
-
----
-
-### Cancel subscription
-
-```http
-DELETE /api/v1/subscriptions
-```
-
-## API Specs
-http://localhost:8080/swagger-ui
-http://localhost:8080/api-docs
-
-## Access H2 Database Console(Local Only)
-http://localhost:8080/h2-console
-Use **jdbc:h2:mem:membershipdb** for connection
