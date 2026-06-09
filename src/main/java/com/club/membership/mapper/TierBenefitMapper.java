@@ -13,7 +13,6 @@ public class TierBenefitMapper {
                 tierBenefitRecord.getId(),
                 TierType.valueOf(tierBenefitRecord.getTierType()),
                 BenefitType.valueOf(tierBenefitRecord.getBenefitType()),
-                tierBenefitRecord.getConfiguration()
-        );
+                tierBenefitRecord.getConfiguration());
     }
 }

@@ -12,7 +12,6 @@ public class MembershipPlanMapper {
                 membershipPlanRecord.getId(),
                 membershipPlanRecord.getName(),
                 BillingCycle.valueOf(membershipPlanRecord.getBillingCycle()),
-                membershipPlanRecord.getPrice()
-        );
+                membershipPlanRecord.getPrice());
     }
 }

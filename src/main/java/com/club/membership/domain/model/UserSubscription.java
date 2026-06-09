@@ -2,7 +2,6 @@ package com.club.membership.domain.model;
 
 import com.club.membership.domain.enums.SubscriptionStatus;
 import com.club.membership.domain.enums.TierType;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 

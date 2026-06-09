@@ -4,7 +4,6 @@ import com.club.membership.context.UserContext;
 import com.club.membership.dto.request.ChangeTierRequest;
 import com.club.membership.dto.request.SubscribeRequest;
 import com.club.membership.dto.response.SubscriptionResponse;
-
 import java.util.List;
 
 public interface SubscriptionService {

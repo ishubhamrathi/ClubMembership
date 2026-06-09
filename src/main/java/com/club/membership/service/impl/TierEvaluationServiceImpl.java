@@ -7,13 +7,12 @@ import com.club.membership.domain.model.TierRule;
 import com.club.membership.dto.request.TierEvaluationRequest;
 import com.club.membership.service.TierEvaluationService;
 import com.club.membership.strategy.TierEvaluationStrategy;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -23,52 +22,39 @@ public class TierEvaluationServiceImpl implements TierEvaluationService {
     private final List<TierEvaluationStrategy> strategies;
 
     @Override
-    public TierType evaluateTier(
-            TierEvaluationRequest request,
-            UserContext userContext
-    ) {
+    public TierType evaluateTier(TierEvaluationRequest request, UserContext userContext) {
 
         Map<TierType, List<TierRule>> rulesByTier =
-                tierRuleDao.getAllRules()
-                        .stream()
-                        .collect(Collectors.groupingBy(
-                                TierRule::tierType
-                        ));
+                tierRuleDao.getAllRules().stream()
+                        .collect(Collectors.groupingBy(TierRule::tierType));
 
         List<TierType> tiersByPriority =
                 Arrays.stream(TierType.values())
-                        .sorted((a, b) ->
-                                Integer.compare(
-                                        b.getPriority(),
-                                        a.getPriority()
-                                ))
+                        .sorted((a, b) -> Integer.compare(b.getPriority(), a.getPriority()))
                         .toList();
 
         for (TierType tierType : tiersByPriority) {
 
-            List<TierRule> rules =
-                    rulesByTier.getOrDefault(
-                            tierType,
-                            List.of()
-                    );
+            List<TierRule> rules = rulesByTier.getOrDefault(tierType, List.of());
 
             if (rules.isEmpty()) {
                 continue;
             }
 
-            boolean eligible = rules.stream()
-                    .allMatch(rule ->
-                            strategies.stream()
-                                    .filter(s ->
-                                            s.supports(
-                                                    rule.ruleType()))
-                                    .findFirst()
-                                    .orElseThrow(() ->
-                                            new IllegalStateException(
-                                                    "No strategy found for rule type: "
-                                                            + rule.ruleType()
-                                            ))
-                                    .isEligible(rule, request));
+            boolean eligible =
+                    rules.stream()
+                            .allMatch(
+                                    rule ->
+                                            strategies.stream()
+                                                    .filter(s -> s.supports(rule.ruleType()))
+                                                    .findFirst()
+                                                    .orElseThrow(
+                                                            () ->
+                                                                    new IllegalStateException(
+                                                                            "No strategy found for rule type: "
+                                                                                    + rule
+                                                                                            .ruleType()))
+                                                    .isEligible(rule, request));
 
             if (eligible) {
                 return tierType;

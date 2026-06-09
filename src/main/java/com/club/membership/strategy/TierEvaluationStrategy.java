@@ -8,8 +8,5 @@ public interface TierEvaluationStrategy {
 
     boolean supports(RuleType ruleType);
 
-    boolean isEligible(
-            TierRule rule,
-            TierEvaluationRequest request
-    );
+    boolean isEligible(TierRule rule, TierEvaluationRequest request);
 }

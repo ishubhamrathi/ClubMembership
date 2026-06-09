@@ -4,9 +4,8 @@ import com.club.membership.domain.enums.RuleType;
 import com.club.membership.domain.model.TierRule;
 import com.club.membership.dto.request.TierEvaluationRequest;
 import com.club.membership.strategy.TierEvaluationStrategy;
-import org.springframework.stereotype.Component;
-
 import java.math.BigDecimal;
+import org.springframework.stereotype.Component;
 
 @Component
 public class TotalOrderValueStrategy implements TierEvaluationStrategy {
@@ -18,14 +17,8 @@ public class TotalOrderValueStrategy implements TierEvaluationStrategy {
     }
 
     @Override
-    public boolean isEligible(
-            TierRule rule,
-            TierEvaluationRequest request
-    ) {
+    public boolean isEligible(TierRule rule, TierEvaluationRequest request) {
 
-        return request.totalOrderValue()
-                .compareTo(
-                        new BigDecimal(rule.threshold())
-                ) >= 0;
+        return request.totalOrderValue().compareTo(new BigDecimal(rule.threshold())) >= 0;
     }
 }

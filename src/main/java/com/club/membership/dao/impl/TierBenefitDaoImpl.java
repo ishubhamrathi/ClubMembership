@@ -8,12 +8,11 @@ import com.club.membership.domain.model.TierBenefit;
 import com.club.membership.exception.DatabaseException;
 import com.club.membership.jooq.generated.Tables;
 import com.club.membership.mapper.TierBenefitMapper;
+import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
-import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -24,7 +23,8 @@ public class TierBenefitDaoImpl implements TierBenefitDao {
 
     @Override
     public List<TierBenefit> getByTier(TierType tierType, UserContext userContext) {
-        return dslContext.selectFrom(Tables.TIER_BENEFIT)
+        return dslContext
+                .selectFrom(Tables.TIER_BENEFIT)
                 .where(Tables.TIER_BENEFIT.TIER_TYPE.eq(tierType.name()))
                 .fetch()
                 .stream()
@@ -34,7 +34,8 @@ public class TierBenefitDaoImpl implements TierBenefitDao {
 
     @Override
     public TierBenefit create(TierBenefit tierBenefit, UserContext userContext) {
-        return dslContext.insertInto(Tables.TIER_BENEFIT)
+        return dslContext
+                .insertInto(Tables.TIER_BENEFIT)
                 .set(Tables.TIER_BENEFIT.TIER_TYPE, tierBenefit.tierType().name())
                 .set(Tables.TIER_BENEFIT.BENEFIT_TYPE, tierBenefit.benefitType().name())
                 .set(Tables.TIER_BENEFIT.CONFIGURATION, tierBenefit.configuration())
@@ -45,8 +46,10 @@ public class TierBenefitDaoImpl implements TierBenefitDao {
     }
 
     @Override
-    public Optional<TierBenefit> getByTierAndBenefitType(TierType tierType, BenefitType benefitType, UserContext userContext) {
-        return dslContext.selectFrom(Tables.TIER_BENEFIT)
+    public Optional<TierBenefit> getByTierAndBenefitType(
+            TierType tierType, BenefitType benefitType, UserContext userContext) {
+        return dslContext
+                .selectFrom(Tables.TIER_BENEFIT)
                 .where(Tables.TIER_BENEFIT.TIER_TYPE.eq(tierType.name()))
                 .and(Tables.TIER_BENEFIT.BENEFIT_TYPE.eq(benefitType.name()))
                 .fetchOptional()

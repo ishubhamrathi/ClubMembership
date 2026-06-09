@@ -17,10 +17,6 @@ public class OpenApiConfig {
                                 .title("Club Membership Program APIs")
                                 .description("REST APIs for managing plans, subscription and tier")
                                 .version("v1.0")
-                                .contact(
-                                        new Contact()
-                                                .name("Shubham Rathi")
-                                )
-                );
+                                .contact(new Contact().name("Shubham Rathi")));
     }
 }

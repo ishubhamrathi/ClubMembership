@@ -6,8 +6,5 @@ import com.club.membership.dto.request.TierEvaluationRequest;
 
 public interface TierEvaluationService {
 
-    TierType evaluateTier(
-            TierEvaluationRequest request,
-            UserContext userContext
-    );
+    TierType evaluateTier(TierEvaluationRequest request, UserContext userContext);
 }

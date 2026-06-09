@@ -16,10 +16,7 @@ public class OrderCountStrategy implements TierEvaluationStrategy {
     }
 
     @Override
-    public boolean isEligible(
-            TierRule rule,
-            TierEvaluationRequest request
-    ) {
+    public boolean isEligible(TierRule rule, TierEvaluationRequest request) {
 
         return request.orderCount() >= Integer.parseInt(rule.threshold());
     }

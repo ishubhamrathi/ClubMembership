@@ -7,9 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubscriptionResponseMapper {
 
-    public SubscriptionResponse toResponse(
-            UserSubscription subscription
-    ) {
+    public SubscriptionResponse toResponse(UserSubscription subscription) {
 
         return new SubscriptionResponse(
                 subscription.getId(),
@@ -18,7 +16,6 @@ public class SubscriptionResponseMapper {
                 subscription.getStatus(),
                 subscription.getSubscribedAt(),
                 subscription.getExpiresAt(),
-                subscription.getVersion()
-        );
+                subscription.getVersion());
     }
 }

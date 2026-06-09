@@ -8,9 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserSubscriptionMapper {
-    public UserSubscription toDomain(
-            UserSubscriptionRecord userSubscriptionRecord
-    ) {
+    public UserSubscription toDomain(UserSubscriptionRecord userSubscriptionRecord) {
         return UserSubscription.builder()
                 .id(userSubscriptionRecord.getId())
                 .userId(userSubscriptionRecord.getUserId())

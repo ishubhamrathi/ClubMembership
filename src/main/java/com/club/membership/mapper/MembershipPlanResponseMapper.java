@@ -7,15 +7,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class MembershipPlanResponseMapper {
 
-    public MembershipPlanResponse toResponse(
-            MembershipPlan membershipPlan
-    ) {
+    public MembershipPlanResponse toResponse(MembershipPlan membershipPlan) {
 
         return new MembershipPlanResponse(
                 membershipPlan.id(),
                 membershipPlan.name(),
                 membershipPlan.billingCycle(),
-                membershipPlan.price()
-        );
+                membershipPlan.price());
     }
 }

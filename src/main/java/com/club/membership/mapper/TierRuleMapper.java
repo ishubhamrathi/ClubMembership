@@ -13,7 +13,6 @@ public class TierRuleMapper {
                 tierRuleRecord.getId(),
                 TierType.valueOf(tierRuleRecord.getTierType()),
                 RuleType.valueOf(tierRuleRecord.getRuleType()),
-                tierRuleRecord.getThresholdValue()
-        );
+                tierRuleRecord.getThresholdValue());
     }
 }

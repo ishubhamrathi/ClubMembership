@@ -5,6 +5,7 @@ plugins {
 	id("org.springframework.boot") version "4.0.6"
 	id("io.spring.dependency-management") version "1.1.7"
     id("nu.studer.jooq") version "9.0"
+    id("com.diffplug.spotless") version "7.0.2"
 }
 
 group = "com.club"
@@ -73,5 +74,16 @@ jooq {
                 }
             }
         }
+    }
+}
+
+spotless {
+    java {
+        target("src/*/java/**/*.java")
+        targetExclude("**/jooq/**")
+        googleJavaFormat("1.22.0").aosp()
+        removeUnusedImports()
+        trimTrailingWhitespace()
+        endWithNewline()
     }
 }

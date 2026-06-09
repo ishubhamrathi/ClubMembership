@@ -1,8 +1,7 @@
 package com.club.membership.dao;
 
-import com.club.membership.domain.model.MembershipPlan;
 import com.club.membership.context.UserContext;
-
+import com.club.membership.domain.model.MembershipPlan;
 import java.util.List;
 import java.util.Optional;
 

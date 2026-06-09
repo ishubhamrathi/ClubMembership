@@ -16,12 +16,8 @@ public class CohortStrategy implements TierEvaluationStrategy {
     }
 
     @Override
-    public boolean isEligible(
-            TierRule rule,
-            TierEvaluationRequest request
-    ) {
+    public boolean isEligible(TierRule rule, TierEvaluationRequest request) {
 
-        return rule.threshold()
-                .equalsIgnoreCase(request.cohort());
+        return rule.threshold().equalsIgnoreCase(request.cohort());
     }
 }
