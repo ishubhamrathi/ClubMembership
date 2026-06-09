@@ -10,16 +10,19 @@ import com.club.membership.jooq.generated.Tables;
 import com.club.membership.mapper.TierRuleMapper;
 import java.util.List;
 import java.util.Optional;
-import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RequiredArgsConstructor
 public class TierRuleDaoImpl implements TierRuleDao {
 
     private final DSLContext dslContext;
     private final TierRuleMapper mapper;
+
+    public TierRuleDaoImpl(DSLContext dslContext, TierRuleMapper mapper) {
+        this.dslContext = dslContext;
+        this.mapper = mapper;
+    }
 
     @Override
     public List<TierRule> getByTier(TierType tierType, UserContext userContext) {

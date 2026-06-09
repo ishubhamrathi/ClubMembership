@@ -10,16 +10,19 @@ import com.club.membership.jooq.generated.Tables;
 import com.club.membership.mapper.TierBenefitMapper;
 import java.util.List;
 import java.util.Optional;
-import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RequiredArgsConstructor
 public class TierBenefitDaoImpl implements TierBenefitDao {
 
     private final DSLContext dslContext;
     private final TierBenefitMapper mapper;
+
+    public TierBenefitDaoImpl(DSLContext dslContext, TierBenefitMapper mapper) {
+        this.dslContext = dslContext;
+        this.mapper = mapper;
+    }
 
     @Override
     public List<TierBenefit> getByTier(TierType tierType, UserContext userContext) {

@@ -11,15 +11,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class TierEvaluationServiceImpl implements TierEvaluationService {
 
     private final TierRuleDao tierRuleDao;
     private final List<TierEvaluationStrategy> strategies;
+
+    public TierEvaluationServiceImpl(
+            TierRuleDao tierRuleDao, List<TierEvaluationStrategy> strategies) {
+        this.tierRuleDao = tierRuleDao;
+        this.strategies = strategies;
+    }
 
     @Override
     public TierType evaluateTier(TierEvaluationRequest request, UserContext userContext) {

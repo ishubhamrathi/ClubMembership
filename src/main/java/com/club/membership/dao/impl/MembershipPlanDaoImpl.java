@@ -8,16 +8,19 @@ import com.club.membership.jooq.generated.Tables;
 import com.club.membership.mapper.MembershipPlanMapper;
 import java.util.List;
 import java.util.Optional;
-import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RequiredArgsConstructor
 public class MembershipPlanDaoImpl implements MembershipPlanDao {
 
     private final DSLContext dslContext;
     private final MembershipPlanMapper mapper;
+
+    public MembershipPlanDaoImpl(DSLContext dslContext, MembershipPlanMapper mapper) {
+        this.dslContext = dslContext;
+        this.mapper = mapper;
+    }
 
     @Override
     public List<MembershipPlan> getAll(UserContext userContext) {

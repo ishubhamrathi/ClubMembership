@@ -6,7 +6,6 @@ import com.club.membership.dto.request.TierEvaluationRequest;
 import com.club.membership.service.TierEvaluationService;
 import jakarta.validation.Valid;
 import java.util.UUID;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -15,10 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/tier-evaluation")
-@RequiredArgsConstructor
 public class TierEvaluationController {
 
     private final TierEvaluationService tierEvaluationService;
+
+    public TierEvaluationController(TierEvaluationService tierEvaluationService) {
+        this.tierEvaluationService = tierEvaluationService;
+    }
 
     @PostMapping
     public TierType evaluateTier(

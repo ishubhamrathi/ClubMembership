@@ -7,15 +7,18 @@ import com.club.membership.dto.response.BenefitResponse;
 import com.club.membership.mapper.BenefitsResponseMapper;
 import com.club.membership.service.BenefitsService;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class BenefitsServiceImpl implements BenefitsService {
 
     private final TierBenefitDao tierBenefitDao;
     private final BenefitsResponseMapper mapper;
+
+    public BenefitsServiceImpl(TierBenefitDao tierBenefitDao, BenefitsResponseMapper mapper) {
+        this.tierBenefitDao = tierBenefitDao;
+        this.mapper = mapper;
+    }
 
     @Override
     public List<BenefitResponse> getBenefits(TierType tierType, UserContext userContext) {

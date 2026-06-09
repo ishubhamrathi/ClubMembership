@@ -9,16 +9,19 @@ import com.club.membership.jooq.generated.Tables;
 import com.club.membership.mapper.UserSubscriptionMapper;
 import java.util.List;
 import java.util.Optional;
-import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RequiredArgsConstructor
 public class UserSubscriptionDaoImpl implements UserSubscriptionDao {
 
     private final DSLContext dslContext;
     private final UserSubscriptionMapper mapper;
+
+    public UserSubscriptionDaoImpl(DSLContext dslContext, UserSubscriptionMapper mapper) {
+        this.dslContext = dslContext;
+        this.mapper = mapper;
+    }
 
     @Override
     public Optional<UserSubscription> getById(Long id, UserContext userContext) {

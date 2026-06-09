@@ -19,18 +19,27 @@ import com.club.membership.service.TierEvaluationService;
 import com.club.membership.utils.SubscriptionDateUtil;
 import java.time.LocalDateTime;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@RequiredArgsConstructor
 public class SubscriptionServiceImpl implements SubscriptionService {
 
     private final MembershipPlanDao membershipPlanDao;
     private final UserSubscriptionDao userSubscriptionDao;
     private final SubscriptionResponseMapper subscriptionResponseMapper;
     private final TierEvaluationService tierEvaluationService;
+
+    public SubscriptionServiceImpl(
+            MembershipPlanDao membershipPlanDao,
+            UserSubscriptionDao userSubscriptionDao,
+            SubscriptionResponseMapper subscriptionResponseMapper,
+            TierEvaluationService tierEvaluationService) {
+        this.membershipPlanDao = membershipPlanDao;
+        this.userSubscriptionDao = userSubscriptionDao;
+        this.subscriptionResponseMapper = subscriptionResponseMapper;
+        this.tierEvaluationService = tierEvaluationService;
+    }
 
     @Override
     @Transactional

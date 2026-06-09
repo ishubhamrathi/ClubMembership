@@ -4,16 +4,18 @@ import com.club.membership.domain.model.TierBenefit;
 import com.club.membership.dto.response.BenefitResponse;
 import com.club.membership.exception.DatabaseException;
 import java.util.Map;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 
 @Component
-@RequiredArgsConstructor
 public class BenefitsResponseMapper {
 
     private final ObjectMapper objectMapper;
+
+    public BenefitsResponseMapper(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
 
     public BenefitResponse toResponse(TierBenefit tierBenefit) {
 
