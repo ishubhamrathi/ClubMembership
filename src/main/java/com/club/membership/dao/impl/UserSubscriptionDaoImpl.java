@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -40,6 +41,15 @@ public class UserSubscriptionDaoImpl implements UserSubscriptionDao {
                         )
                 )
                 .fetchOptional()
+                .map(mapper::toDomain);
+    }
+
+    @Override
+    public List<UserSubscription> getAllByUser(UserContext userContext) {
+        return dslContext
+                .selectFrom(Tables.USER_SUBSCRIPTION)
+                .where(Tables.USER_SUBSCRIPTION.USER_ID.eq(userContext.userId()))
+                .fetch()
                 .map(mapper::toDomain);
     }
 

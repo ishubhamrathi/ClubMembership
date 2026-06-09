@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class OpenApiConfig {
 
     @Bean
-    public OpenAPI membersipOpenApi() {
+    public OpenAPI membershipOpenApi() {
         return new OpenAPI()
                 .info(
                         new Info()

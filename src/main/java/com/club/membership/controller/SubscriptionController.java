@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -48,6 +49,16 @@ public class SubscriptionController {
     ) {
 
         return subscriptionService.getCurrentSubscription(
+                new UserContext(userId)
+        );
+    }
+
+    @GetMapping
+    public List<SubscriptionResponse> getAllSubscriptions(
+            @RequestHeader("X-User-Id") UUID userId
+    ) {
+
+        return subscriptionService.getAllSubscriptions(
                 new UserContext(userId)
         );
     }

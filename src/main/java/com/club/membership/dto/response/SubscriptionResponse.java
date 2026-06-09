@@ -11,6 +11,7 @@ public record SubscriptionResponse (
         TierType tierType,
         SubscriptionStatus status,
         LocalDateTime subscribedAt,
-        LocalDateTime expiresAt
+        LocalDateTime expiresAt,
+        Long version
 ) {
 }

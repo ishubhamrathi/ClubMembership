@@ -12,7 +12,7 @@ public interface TierRuleDao {
 
     List<TierRule> getByTier(TierType tierType, UserContext userContext);
 
-    Optional<TierRule>getByTierAndRuleTyp(
+    Optional<TierRule> getByTierAndRuleType(
             TierType tierType,
             RuleType ruleType,
             UserContext userContext

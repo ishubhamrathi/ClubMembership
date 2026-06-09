@@ -10,6 +10,7 @@ import com.club.membership.strategy.TierEvaluationStrategy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -25,13 +26,25 @@ public class TierEvaluationServiceImpl implements TierEvaluationService {
             UserContext userContext
     ) {
 
-        for (TierType tierType : TierType.values()) {
+        List<TierType> tiersByPriority = java.util.Arrays.stream(
+                        TierType.values()
+                )
+                .sorted(Comparator.comparingInt(
+                        TierType::getPriority
+                ).reversed())
+                .toList();
+
+        for (TierType tierType : tiersByPriority) {
 
             List<TierRule> rules =
                     tierRuleDao.getByTier(
                             tierType,
                             userContext
                     );
+
+            if (rules.isEmpty()) {
+                continue;
+            }
 
             boolean eligible = rules.stream()
                     .allMatch(rule ->

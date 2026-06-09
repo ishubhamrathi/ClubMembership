@@ -34,7 +34,7 @@ public class TierRuleDaoImpl implements TierRuleDao {
     }
 
     @Override
-    public Optional<TierRule> getByTierAndRuleTyp(TierType tierType, RuleType ruleType, UserContext userContext) {
+    public Optional<TierRule> getByTierAndRuleType(TierType tierType, RuleType ruleType, UserContext userContext) {
         return dslContext.selectFrom(Tables.TIER_RULE)
                 .where(Tables.TIER_RULE.TIER_TYPE.eq(tierType.name()))
                 .and(Tables.TIER_RULE.RULE_TYPE.eq(ruleType.name()))

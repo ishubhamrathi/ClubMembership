@@ -17,7 +17,8 @@ public class SubscriptionResponseMapper {
                 subscription.getTierType(),
                 subscription.getStatus(),
                 subscription.getSubscribedAt(),
-                subscription.getExpiresAt()
+                subscription.getExpiresAt(),
+                subscription.getVersion()
         );
     }
 }
